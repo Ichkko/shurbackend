@@ -1,5 +1,6 @@
 package com.example.shure.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class Order extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User user;
 
     @Column(name = "total", nullable = false, precision = 10, scale = 2)
@@ -40,4 +42,5 @@ public class Order extends BaseEntity {
 
     public Order() {
     }
+
 }
